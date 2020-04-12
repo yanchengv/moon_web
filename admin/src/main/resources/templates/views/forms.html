@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/layouts/head :: commonHead(后台管理系统主页)">
+
+</head>
+<body class="c-app">
+
+<div th:replace="/layouts/side_menu :: menus"></div>
+
+<div class="c-wrapper c-fixed-components">
+
+    <div th:replace="/layouts/header :: header"></div>
+
+    <div class="c-body">
+        <main class="c-main">
+            <div class="container-fluid">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header"><strong>Credit Card</strong> <small>Form</small></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input class="form-control" id="name" type="text" placeholder="Enter your name">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="ccnumber">Credit Card Number</label>
+                                        <input class="form-control" id="ccnumber" type="text"
+                                               placeholder="0000 0000 0000 0000">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+    <footer class="c-footer" th:include="/layouts/footer :: footer"></footer>
+
+</div>
+
+<!--<![endif]-->
+</body>
+</html>
