@@ -11,10 +11,11 @@
             <div class="card-group">
                 <div class="card p-4">
                     <div class="card-body">
-                        <h1>登录</h1>
-                        <p class="text-muted">不怨天，不尤人。</p>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend"><span class="input-group-text">
+                        <form action="/crms/admin_login" method="post">
+                            <h1>登录</h1>
+                            <p class="text-muted">不怨天，不尤人。</p>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend"><span class="input-group-text">
 
                                     <svg class="c-icon bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16"
                                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -24,10 +25,10 @@
                                     </svg>
 
                                 </span></div>
-                            <input class="form-control" type="text" placeholder="Username">
-                        </div>
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
+                                <input class="form-control" type="text" name="email" placeholder="email">
+                            </div>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <svg class=" c-icon bi bi-lock-fill" width="1em" height="1em"
                                              viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -37,17 +38,21 @@
                                               clip-rule="evenodd"/>
                                         </svg>
                                     </span>
+                                </div>
+                                <input class="form-control" type="password" name="password" placeholder="Password">
                             </div>
-                            <input class="form-control" type="password" placeholder="Password">
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <button class="btn btn-primary px-4" type="button">登录</button>
+                            <div th:if="${login_error != null}">
+                                <p style="color: red" th:text="${login_error}" />
                             </div>
-                            <div class="col-6 text-right">
-                                <button class="btn btn-link px-0" type="button">忘记密码?</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary px-4" type="submit">登录</button>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button class="btn btn-link px-0" type="button">忘记密码?</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
