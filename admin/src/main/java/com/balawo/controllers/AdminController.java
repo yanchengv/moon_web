@@ -23,6 +23,7 @@ public class AdminController {
     public String index(@RequestParam(value = "page",defaultValue = "1") Integer page, Model model) {
         var admins = adminService.findAll(page);
         model.addAttribute("admins", admins);
+        model.addAttribute("current_page",page);
         return "views/homes/index";
     }
 

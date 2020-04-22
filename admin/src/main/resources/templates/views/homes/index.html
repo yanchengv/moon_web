@@ -38,10 +38,10 @@
                     </table>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
+                            <li class="page-item " th:classappend="${(current_page - 1) == 0} ? 'disabled' : '' ">
+                                    <a class="page-link" th:href="@{/admins/index(page=${current_page - 1})}"  aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
                             </li>
                             <div th:each="i : ${#numbers.sequence(1,admins.totalPages)}">
                                 <li class="page-item">
@@ -51,8 +51,8 @@
                                 </li>
                             </div>
 
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
+                            <li class="page-item" th:classappend="${current_page == admins.totalPages} ? 'disabled' : '' ">
+                                <a class="page-link" th:href="@{/admins/index(page=${current_page + 1})}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
