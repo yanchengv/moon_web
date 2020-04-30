@@ -11,4 +11,11 @@ spring:
   jpa:
     show-sql: true
 
+  flyway:
+    url:  jdbc:postgresql://localhost:5432/my_java
+    user: postgres
+    password: 123
+    locations: classpath:/db/migration
+    baseline-on-migrate: true
+    baseline-version: 0
 

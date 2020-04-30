@@ -24,6 +24,7 @@ public class AdminController {
         var admins = adminService.findAll(page);
         model.addAttribute("admins", admins);
         model.addAttribute("current_page",page);
+        model.addAttribute("adminStatus",Admin.Status);
         return "views/homes/index";
     }
 

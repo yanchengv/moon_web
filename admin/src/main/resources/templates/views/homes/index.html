@@ -19,9 +19,13 @@
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">昵称</th>
-                            <th scope="col">姓名</th>
+                            <th scope="col">用户名</th>
+                            <th scope="col">手机号 </th>
+                            <th scope="col">真实姓名</th>
+                            <th scope="col">邮箱</th>
+                            <th scope="col">状态</th>
                             <th scope="col">创建时间</th>
+                            <th scope="col">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,8 +33,13 @@
                             <tr>
                                 <td th:text="${admin.getId()}"></td>
                                 <td th:text="${admin.getNickname()}"></td>
+                                <td th:text="${admin.getPhone()}"></td>
                                 <td th:text="${admin.getName()}"></td>
+                                <td th:text="${admin.getEmail()}"></td>
+                                <td th:text="${T(com.balawo.models.Admin).Status.get((admin.getStatus()))}"></td>
                                 <td th:text="${admin.getCreated_at()}"></td>
+                                <td><button type="button" class="btn btn-info btn-sm" th:onclick="home_admin_update([[${admin.getId()}]],[[${admin.getName()}]],[[${admin.getNickname()}]],[[${admin.getPhone()}]],[[${admin.getEmail()}]])">修改</button></td>
+
                             </tr>
                         </div>
 
@@ -69,3 +78,65 @@
 <!--<![endif]-->
 </body>
 </html>
+
+
+<div class="modal fade" id="editadminAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">修改管理员</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <input type="hidden" id="update_admin_id" value="">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="input" class="form-control" id="update_nickname"  name="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label>真实姓名</label>
+                        <input type="input" class="form-control" id="update_name"  name="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>手机号</label>
+                        <input type="input" class="form-control" id="update_phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label>邮箱</label>
+                        <input type="input" class="form-control" id="update_email"  name="email">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">取消</button>
+                        <button type="button" class="btn btn-primary">提交</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function home_admin_update(admin_id,name,nickname,phone,email) {
+        $('#editadminAddModal').modal('show');
+        $('#editadminAddModal').on('shown.bs.modal', function () {
+            $('#update_admin_id').val(admin_id)
+            $('#update_nickname').val(nickname)
+            $('#update_name').val(name)
+            $('#update_phone').val(phone)
+            $('#update_email').val(email)
+        })
+
+    }
+
+</script>
+

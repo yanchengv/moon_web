@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title th:text="${title}">后台管理系统</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+
     <!--coreUI 模板的样式引入 start-->
-    <!-- popper.min.js first, then coreui.min.js 引入在jquery 和 bootstrap之前 -->
+    <!-- 先引入popper.min.js 然后 coreui.min.js； 引入在jquery 和 bootstrap 的js之前,bootstrap的css要放在coreui.min.css之前 -->
     <!--    <link rel="stylesheet" href="coreui/coreui.min.css">-->
     <!--    <script src="coreui/popper.min.js"></script>-->
     <!--    <script src="coreui/coreui.min.js"></script>-->
@@ -13,7 +15,8 @@
     <script th:src="@{/coreui/popper.min.js}"></script>
     <script th:src="@{/coreui/coreui.min.js}"></script>
     <!--coreUI 模板样式引入 end-->
-
+    <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 
 </head>
 </html>

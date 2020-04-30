@@ -21,6 +21,8 @@ package com.balawo.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name="admins")
@@ -43,6 +45,14 @@ public class Admin {
     private Timestamp deleted_at;
     private Timestamp created_at;
     private Timestamp updated_at;
+
+    public static Map Status;
+    static{
+        Status = new HashMap();
+        Status.put(0,"正常");
+        Status.put(1,"禁用");
+    }
+
 
     public Long getId() {
         return id;
