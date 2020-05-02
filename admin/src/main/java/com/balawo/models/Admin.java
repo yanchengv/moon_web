@@ -37,7 +37,7 @@ public class Admin {
     private String phone;
     private String email;
     private String avatar;
-    private String role;
+    private Integer role;
     private Integer status;
     private Long company_id;
     private Long department_id;
@@ -118,11 +118,11 @@ public class Admin {
         this.avatar = avatar;
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 

@@ -9,7 +9,7 @@
 
 <div class="c-wrapper c-fixed-components">
 
-    <div th:replace="/layouts/header :: header"></div>
+    <div th:replace="/layouts/header :: header('主页','管理员','/crms/admins/index','管理员列表')"></div>
 
     <div class="c-body">
         <main class="c-main">
@@ -90,11 +90,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
-                    <input type="hidden" id="update_admin_id" value="">
+                <form action="/crms/admins/update" method="post">
+                    <input type="hidden" id="update_admin_id" name="adminId" value="">
                     <div class="form-group">
                         <label>用户名</label>
-                        <input type="input" class="form-control" id="update_nickname"  name="username">
+                        <input type="input" class="form-control" id="update_nickname"  name="nickname">
                     </div>
 
                     <div class="form-group">
@@ -113,8 +113,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">取消</button>
-                        <button type="button" class="btn btn-primary">提交</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
                     </div>
 
                 </form>

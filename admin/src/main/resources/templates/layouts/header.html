@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<header th:fragment="header" class="c-header c-header-light c-header-fixed c-header-with-subheader">
+<header th:fragment="header(m1,m2,m2Url,m3)" class="c-header c-header-light c-header-fixed c-header-with-subheader">
     <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
             data-class="c-sidebar-show">
         <svg class="c-icon c-icon-lg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -20,9 +20,9 @@
         </svg>
     </button>
     <ul class="c-header-nav d-md-down-none">
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="/crms/home">主页</a></li>
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
+        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="/crms/admins/index">主页</a></li>
+<!--        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>-->
+<!--        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>-->
     </ul>
     <ul class="c-header-nav ml-auto mr-4">
         <li class="c-header-nav-item dropdown">
@@ -53,9 +53,9 @@
     <div class="c-subheader px-3">
         <!-- Breadcrumb-->
         <ol class="breadcrumb border-0 m-0">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item"><a href="#">Admin</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item"><span th:text="${m1}"/></li>
+            <li class="breadcrumb-item"><a th:href="${m2Url}"><span th:text="${m2}"></span></a></li>
+            <li class="breadcrumb-item active"><span th:text="${m3}" /></li>
             <!-- Breadcrumb Menu-->
         </ol>
     </div>

@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class AdminService {
@@ -29,9 +28,19 @@ public class AdminService {
     }
 
 
+    public Admin findById(Long id){
+        var admin = adminRepository.findById(id).get();
+        return admin;
+    }
+
     public Admin findByEmail(String email) {
         var admin = adminRepository.findByEmail(email);
         return admin;
+    }
+
+    public Admin updateAdmin(Admin admin){
+        var a = adminRepository.save(admin);
+        return a;
     }
 
     /**
