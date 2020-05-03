@@ -9,7 +9,7 @@
 
 <div class="c-wrapper c-fixed-components">
 
-    <div th:replace="/layouts/header :: header('主页','管理员','/crms/admins/index','管理员列表')"></div>
+    <div th:replace="/layouts/header :: header(${breadMenu.get('m1')},${breadMenu.get('m2')},${breadMenu.get('m2Url')},${breadMenu.get('m3')})"></div>
 
     <div class="c-body">
         <main class="c-main">
@@ -38,7 +38,11 @@
                                 <td th:text="${admin.getEmail()}"></td>
                                 <td th:text="${T(com.balawo.models.Admin).Status.get((admin.getStatus()))}"></td>
                                 <td th:text="${admin.getCreated_at()}"></td>
-                                <td><button type="button" class="btn btn-info btn-sm" th:onclick="home_admin_update([[${admin.getId()}]],[[${admin.getName()}]],[[${admin.getNickname()}]],[[${admin.getPhone()}]],[[${admin.getEmail()}]])">修改</button></td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-sm" th:onclick="home_admin_update([[${admin.getId()}]],[[${admin.getName()}]],[[${admin.getNickname()}]],[[${admin.getPhone()}]],[[${admin.getEmail()}]])">修改</button>
+                                    <button type="button" class="btn btn-danger btn-sm" >禁用</button>
+
+                                </td>
 
                             </tr>
                         </div>
