@@ -1,4 +1,4 @@
-package com.balawo.controllers;
+package com.balawo.controllers.homes;
 
 import com.balawo.config.QiqiuProperties;
 import com.balawo.models.User;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class UserController {
+public class UsersController {
     @Autowired
     private UserRepository userRepository;
 

@@ -1,7 +1,6 @@
-package com.balawo.controllers;
+package com.balawo.controllers.homes;
 
 import com.balawo.models.Admin;
-import com.balawo.repository.AdminRepository;
 import com.balawo.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admins")
-public class AdminController {
+public class AdminsController {
 
     @Autowired
     private AdminService adminService;
@@ -36,7 +34,7 @@ public class AdminController {
         model.addAttribute("current_page",page);
         model.addAttribute("adminStatus",Admin.Status);
         model.addAttribute("breadMenu",breadMenu);
-        return "views/homes/index";
+        return "views/homes/admins/index";
     }
 
     @PostMapping("/update")
