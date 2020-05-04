@@ -25,7 +25,6 @@
                             <th scope="col">邮箱</th>
                             <th scope="col">状态</th>
                             <th scope="col">创建时间</th>
-                            <th scope="col">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,9 +37,13 @@
                                 <td th:text="${admin.getEmail()}"></td>
                                 <td th:text="${T(com.balawo.models.Admin).Status.get((admin.getStatus()))}"></td>
                                 <td th:text="${admin.getCreated_at()}"></td>
-                                <td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="60" style="border:none" class="text-right">
                                     <button type="button" class="btn btn-info btn-sm" th:onclick="home_admin_update([[${admin.getId()}]],[[${admin.getName()}]],[[${admin.getNickname()}]],[[${admin.getPhone()}]],[[${admin.getEmail()}]])">修改</button>
-                                    <button type="button" class="btn btn-danger btn-sm" >禁用</button>
+                                    <button th:if="${admin.getStatus() == 0}" type="button" class="btn btn-danger btn-sm" th:onclick="admin_disabled_update([[${admin.getId()}]],1,'禁用管理员')">禁用</button>
+                                    <button th:if="${admin.getStatus() == 1}" type="button" class="btn btn-danger btn-sm" th:onclick="admin_disabled_update([[${admin.getId()}]],0,'启用管理员')">启用</button>
 
                                 </td>
 
@@ -83,7 +86,7 @@
 </body>
 </html>
 
-
+<!--管理员修改modal-->
 <div class="modal fade" id="editadminAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -129,6 +132,36 @@
     </div>
 </div>
 
+
+<!--管理员状态修改modal-->
+<div class="modal fade" id="adminDisableModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">管理员状态</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 id="adminDisableModalTitle"></h3>
+                <form action="/crms/admins/set_admin_status" method="post">
+                    <input type="hidden" id="disabled_admin_id" name="adminId" value="">
+                    <input type="hidden" id="admin_status" name="status" value="">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script>
     function home_admin_update(admin_id,name,nickname,phone,email) {
         $('#editadminAddModal').modal('show');
@@ -140,6 +173,15 @@
             $('#update_email').val(email)
         })
 
+    }
+
+    function admin_disabled_update(admin_id,admin_status,modal_title){
+        $('#adminDisableModal').modal('show');
+        $('#adminDisableModal').on('shown.bs.modal', function () {
+            $('#disabled_admin_id').val(admin_id)
+            $('#admin_status').val(admin_status)
+            $('#adminDisableModalTitle').html(modal_title)
+        })
     }
 
 </script>

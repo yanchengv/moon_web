@@ -48,4 +48,14 @@ public class AdminsController {
         return "redirect:/admins/index";
     }
 
+    @PostMapping("/set_admin_status")
+    public String set_admin_status(HttpServletRequest request){
+        var admin = adminService.findById(Long.parseLong(request.getParameter("adminId")));
+        admin.setStatus(Integer.parseInt(request.getParameter("status")));
+        adminService.updateAdmin(admin);
+        //return "redirect:/admins/index";
+        return "redirect:" + request.getHeader("Referer");
+
+    }
+
 }
