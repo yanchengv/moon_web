@@ -12,6 +12,7 @@ spring:
     show-sql: true
 
   flyway:
+    enabled: true
     url:  jdbc:postgresql://localhost:5432/my_java
     user: postgres
     password: 123
