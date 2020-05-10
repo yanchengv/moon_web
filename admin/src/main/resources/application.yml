@@ -7,16 +7,14 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/my_java
     username: postgres
-    password: 123
+    password: 1234
   jpa:
     show-sql: true
 
   flyway:
     enabled: true
-    url:  jdbc:postgresql://localhost:5432/my_java
-    user: postgres
-    password: 123
     locations: classpath:/db/migration
     baseline-on-migrate: true
-    baseline-version: 0
-
+    baseline-version: 1
+    validate-on-migrate=false: false
+    table: schema_migrations #生成计划表名称，默认是 flyway_schema_history

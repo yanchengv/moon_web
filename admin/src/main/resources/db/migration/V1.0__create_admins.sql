@@ -1,4 +1,5 @@
 create table admins(
+       id int8 primary key
     id int8  primary key  DEFAULT nextval('admins_id_seq'::regclass) not null,
     nickname varchar,
     name varchar,
@@ -19,21 +20,3 @@ create table admins(
 )
 
 
-/**
- * "id" int8 NOT NULL,
- * "nickname" varchar COLLATE "default",
- * "name" varchar COLLATE "default",
- * "password" varchar COLLATE "default",
- * "salt" varchar COLLATE "default",
- * "phone" varchar COLLATE "default",
- * "email" varchar COLLATE "default",
- * "avatar" varchar COLLATE "default",
- * "role" int4 DEFAULT 0,
- * "status" int4 DEFAULT 0,
- * "company_id" int4,
- * "department_id" int4,
- * "login_ip" varchar COLLATE "default",
- * "deleted_at" timestamp(6) NULL,
- * "created_at" timestamp(6) NOT NULL,
- * "updated_at" timestamp(6) NOT NULL,
- */
