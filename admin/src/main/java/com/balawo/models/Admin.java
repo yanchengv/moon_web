@@ -19,12 +19,20 @@ package com.balawo.models;
  * "updated_at" timestamp(6) NOT NULL,
  */
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @Entity
+//自动生成时间
+@EntityListeners(AuditingEntityListener.class)
 @Table(name="admins")
 public class Admin {
     @Id
@@ -43,7 +51,9 @@ public class Admin {
     private Long department_id;
     private String login_ip;
     private Timestamp deleted_at;
+    @CreatedDate
     private Timestamp created_at;
+    @LastModifiedDate
     private Timestamp updated_at;
 
     public static Map Status;
@@ -83,7 +93,7 @@ public class Admin {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = DigestUtils.sha1Hex(password + this.salt);
     }
 
     public String getSalt() {

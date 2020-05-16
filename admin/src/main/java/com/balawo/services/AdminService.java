@@ -11,6 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 
 @Service
 public class AdminService {
@@ -28,7 +31,7 @@ public class AdminService {
     }
 
 
-    public Admin findById(Long id){
+    public Admin findById(Long id) {
         var admin = adminRepository.findById(id).get();
         return admin;
     }
@@ -38,14 +41,19 @@ public class AdminService {
         return admin;
     }
 
-    public Admin updateAdmin(Admin admin){
+    public Admin updateAdmin(Admin admin) {
         var a = adminRepository.save(admin);
         return a;
+    }
+
+    public void createAdmin(Admin admin) {
+        var a = adminRepository.save(admin);
     }
 
     /**
      * 密码验证是否正确
      * DigestUtils.sha1Hex 等同于ruby的Digest::SHA1.hexdigest方法
+     *
      * @param admin
      * @param password
      * @return
@@ -53,9 +61,23 @@ public class AdminService {
     public Boolean password_validate(Admin admin, String password) {
         var user_password = admin.getPassword();
         var p1 = DigestUtils.sha1Hex(password + admin.getSalt());
-        if(user_password.equals(p1)){
+        if (user_password.equals(p1)) {
             return true;
         }
         return false;
+    }
+
+    public HashMap encrypt_password(String password) {
+        var hashMap = new HashMap<String, String>();
+        var salt = UUID.randomUUID().toString().replace("-", "");
+        var pwd = DigestUtils.sha1Hex(password + salt);
+        hashMap.put("pwd", pwd);
+        hashMap.put("salt", salt);
+        return hashMap;
+    }
+
+    public String getUuid() {
+        var salt = UUID.randomUUID().toString().replace("-", "");
+        return salt;
     }
 }
