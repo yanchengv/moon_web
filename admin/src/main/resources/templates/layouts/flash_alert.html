@@ -3,7 +3,7 @@
 <!--警告弹框，弹出后会自动消失-->
 <div th:fragment="flash_alert(msg)">
     <div th:if="${msg != null}">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="flash_tip_msg">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="flash_tip_msg">
             <span th:text="${msg}"></span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

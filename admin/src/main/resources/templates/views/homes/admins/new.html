@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title th:text="${title}">后台管理系统</title>
 <head th:include="/layouts/head :: commonHead(后台管理系统主页)">
 
 </head>
@@ -8,7 +9,7 @@
 <div th:replace="/layouts/side_menu :: menus"></div>
 
 <div class="c-wrapper c-fixed-components">
-    <div th:replace="/layouts/header :: header(${breadMenu.get('m1')},${breadMenu.get('m2')},${breadMenu.get('m2Url')},${breadMenu.get('m3')})"></div>
+    <div th:replace="/layouts/header :: header(${breadMenu.get('m1')},${breadMenu.get('m2')},${breadMenu.get('m2_url')},${breadMenu.get('m3')})"></div>
 
     <div class="c-body">
         <main class="c-main">

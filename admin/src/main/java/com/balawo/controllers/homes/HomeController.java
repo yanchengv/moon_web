@@ -15,7 +15,7 @@ public class HomeController {
         var breadMenu = new HashMap<String,String>();
         breadMenu.put("m1","管理系统");
         breadMenu.put("m2","首页");
-        breadMenu.put("m2Url","/crms");
+        breadMenu.put("m2_url","/crms");
         breadMenu.put("m3","首页");
         model.addAttribute("breadMenu",breadMenu);
         return "views/homes/home/index";
