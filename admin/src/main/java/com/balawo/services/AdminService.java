@@ -23,6 +23,7 @@ public class AdminService {
     private AdminRepository adminRepository;
 
 
+
     public Page<Admin> findAll(Integer page) {
         page -= 1;
         Pageable pageable = PageRequest.of(page, 10, Sort.by("id").ascending());

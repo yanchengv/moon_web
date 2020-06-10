@@ -1,11 +1,14 @@
 package com.balawo.models;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.UUID;
 
 @Component
 public class AdminInfo implements UserDetails {
@@ -27,10 +30,10 @@ public class AdminInfo implements UserDetails {
         return null;
     }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+//    @Override
+//    public String getPassword() {
+//        return password;
+//    }
 
     @Override
     public String getUsername() {
@@ -81,6 +84,9 @@ public class AdminInfo implements UserDetails {
         this.name = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
     public void setPassword(String password) {
         this.password = password;
     }
@@ -131,5 +137,22 @@ public class AdminInfo implements UserDetails {
 
     public void setDeleted_at(Timestamp deleted_at) {
         this.deleted_at = deleted_at;
+    }
+
+    /**
+     * 密码验证是否正确
+     * DigestUtils.sha1Hex 等同于ruby的Digest::SHA1.hexdigest方法
+     *
+     * @param admin
+     * @param password
+     * @return
+     */
+    public Boolean password_validate(AdminInfo admin, String password) {
+        var user_password = admin.getPassword();
+        var p1 = DigestUtils.sha1Hex(password + admin.getSalt());
+        if (user_password.equals(p1)) {
+            return true;
+        }
+        return false;
     }
 }
