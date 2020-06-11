@@ -2,13 +2,12 @@ package com.balawo.models;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public class AdminInfo implements UserDetails {
@@ -25,10 +24,6 @@ public class AdminInfo implements UserDetails {
     private Timestamp deleted_at;
 
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
 //    @Override
 //    public String getPassword() {
@@ -59,6 +54,15 @@ public class AdminInfo implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+    @Override
+    public List<GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + "admin"));
+        return authorities;
+    }
+
 
     public Long getId() {
         return id;

@@ -11,6 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 
+
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
     /**
@@ -18,7 +19,6 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
      */
     @Autowired
     private MyAdminDetailsService userDetailService;
-
 
 
 
@@ -37,7 +37,10 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
             System.out.println("密码不正确!!!");
             throw new BadCredentialsException("密码不正确");
         }
-        return new UsernamePasswordAuthenticationToken(adminInfo,adminInfo.getPassword());
+        // Credentials: [PROTECTED]; Authenticated: true; Details: null; Granted Authorities: ROLE_admin
+        Authentication auth = new UsernamePasswordAuthenticationToken(adminInfo,adminInfo.getPassword(),adminInfo.getAuthorities());
+        return auth;
+
     }
 
     @Override

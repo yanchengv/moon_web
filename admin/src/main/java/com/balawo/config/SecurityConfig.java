@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
@@ -20,8 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyAuthenticationProvider myAuthenticationProvider;
 
-    @Autowired
-    private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
 
     /**
      * 自定义获取用户信息接口
@@ -30,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(myAuthenticationProvider);
+          auth.authenticationProvider(myAuthenticationProvider);
 //        auth.inMemoryAuthentication()
 //                .passwordEncoder(new BCryptPasswordEncoder())
 //                .withUser("admin")
@@ -53,9 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .loginProcessingUrl("/crms/admin_login") // 自定义的登录接口
-                //.defaultSuccessUrl("/crms/admins/index") //成功登陆后跳转页面
-                .successHandler(myAuthenticationSuccessHandler)
-                .failureUrl("/login?error")
+                .defaultSuccessUrl("/admins/index") //成功登陆后跳转页面
+                .failureUrl("/login?login_error=eee")
                 .permitAll()
                 .and().csrf().disable(); 					// 关闭csrf防护
         ;
