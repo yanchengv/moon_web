@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/coreui/**", "/webjars/**","/bootstrap/**","/login","/register","/crms/admin_login")//不拦截登录相关方法
                 .permitAll()
                 //.antMatchers("/user/**").hasAnyRole("USER") // 需要具有ROLE_USER角色才能访问
-                //.antMatchers("/admin/**").hasAnyRole("ADMIN") // 需要具有ROLE_ADMIN角色才能访问
+                //.antMatchers("/admins/**").hasAnyRole("ADMIN") // 需要具有ROLE_ADMIN角色才能访问
                 .anyRequest().authenticated() 				// 任何请求,登录后可以访问
                 .and()
                 .formLogin()

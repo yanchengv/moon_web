@@ -24,6 +24,7 @@ public class MyAdminDetailsService implements UserDetailsService {
         if(admin != null) {
             //假设返回的用户信息如下;
             AdminInfo userInfo=new AdminInfo();
+            userInfo.setId(admin.getId());
             userInfo.setName(admin.getName());
             userInfo.setPassword(admin.getPassword());
             userInfo.setNickname(admin.getNickname());
