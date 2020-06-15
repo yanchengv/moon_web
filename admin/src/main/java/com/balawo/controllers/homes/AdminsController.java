@@ -40,7 +40,7 @@ public class AdminsController {
         model.addAttribute("current_page", page);
         model.addAttribute("adminStatus", Admin.Status);
         model.addAttribute("breadMenu", breadMenu);
-        System.out.println("ID: "+current_user.getId() +"；Name:" + current_user.getName() + "；Phone:" + current_user.getPhone());
+        System.out.println("ID: "+current_user.getId() +"；Name:" + current_user.getName() + "；Phone:" + current_user.getPhone()+"；权限：" + current_user.getAuthorities());
 
         return "views/homes/admins/index";
     }

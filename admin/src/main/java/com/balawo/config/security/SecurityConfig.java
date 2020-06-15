@@ -1,7 +1,7 @@
-package com.balawo.config;
+package com.balawo.config.security;
 
-import com.balawo.services.AdminService;
-import com.balawo.services.MyAdminDetailsService;
+
+import com.balawo.config.security.MyAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,9 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
 
 
 @Configurable
@@ -47,7 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 //.antMatchers("/user/**").hasAnyRole("USER") // 需要具有ROLE_USER角色才能访问
                 //.antMatchers("/admins/**").hasAnyRole("ADMIN") // 需要具有ROLE_ADMIN角色才能访问
-                .anyRequest().authenticated() 				// 任何请求,登录后可以访问
+                //.anyRequest().authenticated() 				// 任何请求,登录后可以访问 必须经过认证以后才能访问
+                .anyRequest().access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
                 .and()
                 .formLogin()
                 .loginPage("/login") // 设置登录页面
@@ -55,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginProcessingUrl("/crms/admin_login") // 自定义的登录接口
                 .defaultSuccessUrl("/admins/index") //成功登陆后跳转页面
-                .failureUrl("/login?login_error=eee")
-                .permitAll()
+                .failureUrl("/login?login_error=error")
+                .permitAll() //permitAll()表示这个不需要验证 登录页面，登录失败页面
                 .and().csrf().disable(); 					// 关闭csrf防护
         ;
     }

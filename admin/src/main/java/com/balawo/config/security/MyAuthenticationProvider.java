@@ -1,4 +1,4 @@
-package com.balawo.config;
+package com.balawo.config.security;
 
 import com.balawo.models.AdminInfo;
 import com.balawo.services.MyAdminDetailsService;
