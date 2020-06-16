@@ -131,7 +131,7 @@
                 <configuration>
                     <!-- 配置目标数据库连接 -->
                     <user>postgres</user>
-                    <password>1234</password>
+                    <password>123</password>
                     <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://localhost:5432/my_java</url>
                     <!-- 配置数据库脚本位置，官方默认放在 /src/main/resources/db/migration -->

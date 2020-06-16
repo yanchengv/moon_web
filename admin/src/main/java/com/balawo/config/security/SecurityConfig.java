@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginProcessingUrl("/crms/admin_login") // 自定义的登录接口
                 .defaultSuccessUrl("/admins/index") //成功登陆后跳转页面
-                .failureUrl("/login?login_error=error")
+                .failureUrl("/login?error=error")
                 .permitAll() //permitAll()表示这个不需要验证 登录页面，登录失败页面
                 .and().csrf().disable(); 					// 关闭csrf防护
         ;
