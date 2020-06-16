@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<title th:text="${title}">后台管理系统</title>
-<head th:include="/layouts/head :: commonHead(后台管理系统主页)">
-
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layouts/layout}">
+<head>
+    <title>管理员列表</title>
 </head>
-<body class="c-app">
+<body>
+<div layout:fragment="content">
 
-<div th:replace="/layouts/side_menu :: menus"></div>
-
-<div class="c-wrapper c-fixed-components">
-    <div th:replace="/layouts/header :: header(${breadMenu.get('m1')},${breadMenu.get('m2')},${breadMenu.get('m2_url')},${breadMenu.get('m3')})"></div>
-
-    <div class="c-body">
-        <main class="c-main">
-            <div class="container-fluid">
-                <div th:replace="/layouts/flash_alert :: flash_alert(${flashMsg})"></div>
             <form th:action="@{/admins/create}" method="post">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">昵称</label>
@@ -54,15 +47,6 @@
                     </div>
                 </div>
             </form>
-            </div>
-        </main>
-    </div>
-    <footer class="c-footer" th:include="/layouts/footer :: footer"></footer>
-
 </div>
-
-<!--<![endif]-->
 </body>
 </html>
-
-
