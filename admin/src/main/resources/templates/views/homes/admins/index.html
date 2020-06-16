@@ -13,70 +13,82 @@
 
     <div class="c-body">
         <main class="c-main">
-            <div class="card">
-                <div class="card-body">
-                    <a  class="btn btn-primary" th:href="@{/admins/new}">新增</a>
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">用户名</th>
-                            <th scope="col">手机号 </th>
-                            <th scope="col">真实姓名</th>
-                            <th scope="col">邮箱</th>
-                            <th scope="col">状态</th>
-                            <th scope="col">创建时间</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <div th:each="admin : ${admins}">
+                <div class="card">
+                    <div class="card-body">
+                        <a class="btn btn-primary" th:href="@{/admins/new}">新增</a>
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
-                                <td th:text="${admin.getId()}"></td>
-                                <td th:text="${admin.getNickname()}"></td>
-                                <td th:text="${admin.getPhone()}"></td>
-                                <td th:text="${admin.getName()}"></td>
-                                <td th:text="${admin.getEmail()}"></td>
-                                <td th:text="${T(com.balawo.models.Admin).Status.get((admin.getStatus()))}"></td>
-                                <td th:text="${admin.getCreated_at()}"></td>
-
+                                <th scope="col">ID</th>
+                                <th scope="col">用户名</th>
+                                <th scope="col">手机号</th>
+                                <th scope="col">真实姓名</th>
+                                <th scope="col">邮箱</th>
+                                <th scope="col">状态</th>
+                                <th scope="col">创建时间</th>
                             </tr>
-                            <tr>
-                                <td colspan="60" style="border:none" class="text-right">
-                                    <button type="button" class="btn btn-info btn-sm" th:onclick="home_admin_update([[${admin.getId()}]],[[${admin.getName()}]],[[${admin.getNickname()}]],[[${admin.getPhone()}]],[[${admin.getEmail()}]])">修改</button>
-                                    <button th:if="${admin.getStatus() == 0}" type="button" class="btn btn-danger btn-sm" th:onclick="admin_disabled_update([[${admin.getId()}]],1,'禁用管理员')">禁用</button>
-                                    <button th:if="${admin.getStatus() == 1}" type="button" class="btn btn-danger btn-sm" th:onclick="admin_disabled_update([[${admin.getId()}]],0,'启用管理员')">启用</button>
+                            </thead>
+                            <tbody>
+                            <div th:each="admin : ${admins}">
+                                <tr>
+                                    <td th:text="${admin.getId()}"></td>
+                                    <td th:text="${admin.getNickname()}"></td>
+                                    <td th:text="${admin.getPhone()}"></td>
+                                    <td th:text="${admin.getName()}"></td>
+                                    <td th:text="${admin.getEmail()}"></td>
+                                    <td th:text="${T(com.balawo.models.Admin).Status.get((admin.getStatus()))}"></td>
+                                    <td th:text="${admin.getCreated_at()}"></td>
 
-                                </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="60" style="border:none" class="text-right">
+                                        <button type="button" class="btn btn-info btn-sm"
+                                                th:onclick="home_admin_update([[${admin.getId()}]],[[${admin.getName()}]],[[${admin.getNickname()}]],[[${admin.getPhone()}]],[[${admin.getEmail()}]])">
+                                            修改
+                                        </button>
+                                        <button th:if="${admin.getStatus() == 0}" type="button"
+                                                class="btn btn-danger btn-sm"
+                                                th:onclick="admin_disabled_update([[${admin.getId()}]],1,'禁用管理员')">禁用
+                                        </button>
+                                        <button th:if="${admin.getStatus() == 1}" type="button"
+                                                class="btn btn-danger btn-sm"
+                                                th:onclick="admin_disabled_update([[${admin.getId()}]],0,'启用管理员')">启用
+                                        </button>
 
-                            </tr>
-                        </div>
+                                    </td>
 
-                        </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item " th:classappend="${(current_page - 1) == 0} ? 'disabled' : '' ">
-                                    <a class="page-link" th:href="@{/admins/index(page=${current_page - 1})}"  aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                            </li>
-                            <div th:each="i : ${#numbers.sequence(1,admins.totalPages)}">
-                                <li class="page-item">
-                                    <a class="page-link" th:href="@{/admins/index(page=${i})}" th:text="${i}">
-
-                                    </a>
-                                </li>
+                                </tr>
                             </div>
 
-                            <li class="page-item" th:classappend="${current_page == admins.totalPages} ? 'disabled' : '' ">
-                                <a class="page-link" th:href="@{/admins/index(page=${current_page + 1})}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                            </tbody>
+                        </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item " th:classappend="${(current_page - 1) == 0} ? 'disabled' : '' ">
+                                    <a class="page-link" th:href="@{/admins/index(page=${current_page - 1})}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <div th:each="i : ${#numbers.sequence(1,admins.totalPages)}">
+                                    <li class="page-item">
+                                        <a class="page-link" th:href="@{/admins/index(page=${i})}" th:text="${i}">
+
+                                        </a>
+                                    </li>
+                                </div>
+
+                                <li class="page-item"
+                                    th:classappend="${current_page == admins.totalPages} ? 'disabled' : '' ">
+                                    <a class="page-link" th:href="@{/admins/index(page=${current_page + 1})}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>
         </main>
     </div>
     <footer class="c-footer" th:include="/layouts/footer :: footer"></footer>
@@ -88,7 +100,8 @@
 </html>
 
 <!--管理员修改modal-->
-<div class="modal fade" id="editadminAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editadminAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -102,12 +115,12 @@
                     <input type="hidden" id="update_admin_id" name="adminId" value="">
                     <div class="form-group">
                         <label>用户名</label>
-                        <input type="input" class="form-control" id="update_nickname"  name="nickname">
+                        <input type="input" class="form-control" id="update_nickname" name="nickname">
                     </div>
 
                     <div class="form-group">
                         <label>真实姓名</label>
-                        <input type="input" class="form-control" id="update_name"  name="name">
+                        <input type="input" class="form-control" id="update_name" name="name">
                     </div>
 
                     <div class="form-group">
@@ -117,7 +130,7 @@
 
                     <div class="form-group">
                         <label>邮箱</label>
-                        <input type="input" class="form-control" id="update_email"  name="email">
+                        <input type="input" class="form-control" id="update_email" name="email">
                     </div>
 
                     <div class="modal-footer">
@@ -135,7 +148,8 @@
 
 
 <!--管理员状态修改modal-->
-<div class="modal fade" id="adminDisableModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="adminDisableModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -164,7 +178,7 @@
 </div>
 
 <script>
-    function home_admin_update(admin_id,name,nickname,phone,email) {
+    function home_admin_update(admin_id, name, nickname, phone, email) {
         $('#editadminAddModal').modal('show');
         $('#editadminAddModal').on('shown.bs.modal', function () {
             $('#update_admin_id').val(admin_id)
@@ -176,7 +190,7 @@
 
     }
 
-    function admin_disabled_update(admin_id,admin_status,modal_title){
+    function admin_disabled_update(admin_id, admin_status, modal_title) {
         $('#adminDisableModal').modal('show');
         $('#adminDisableModal').on('shown.bs.modal', function () {
             $('#disabled_admin_id').val(admin_id)

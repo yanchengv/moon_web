@@ -48,6 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.anyRequest().authenticated() 				// 任何请求,登录后可以访问 必须经过认证以后才能访问
                 .anyRequest().access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
                 .and()
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())
+                .and()
                 .formLogin()
                 .loginPage("/login") // 设置登录页面
                 .usernameParameter("username")
