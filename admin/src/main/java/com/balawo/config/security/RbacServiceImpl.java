@@ -28,6 +28,9 @@ public class RbacServiceImpl implements RbacService {
             urls.add("/crms/admins/index");
             urls.add("/crms/admins/new");
             urls.add("/crms/admins/create");
+            urls.add("/crms/roles/index");
+            urls.add("/crms/roles/new");
+            urls.add("/crms/roles/create");
             System.out.println("查看用户用户使用拥有当前访问界面的权限");
             System.out.println(request.getRequestURI());
             // 注意这里不能用equal来判断，因为有些URL是有参数的，所以要用AntPathMatcher来比较
