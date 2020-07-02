@@ -7,7 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Entity
 //自动生成时间
