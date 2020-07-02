@@ -1,7 +1,7 @@
 package com.balawo.controllers.manages;
 
 import com.balawo.models.Role;
-import com.balawo.services.RoleService;
+import com.balawo.services.manages.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class RolesController {
         var breadMenu = new HashMap<String, String>();
         breadMenu.put("m1", "系统管理");
         breadMenu.put("m2", "角色管理");
-        breadMenu.put("m2_url", "/crms/admins/index");
+        breadMenu.put("m2_url", "/crms/roles/index");
         breadMenu.put("m3", "角色列表");
 
         var roles = roleService.findAll(page);

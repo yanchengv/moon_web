@@ -6,6 +6,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 //自动生成时间
@@ -16,12 +18,21 @@ public class Authority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String action;
     private Integer type;
     private Timestamp deleted_at;
     @CreatedDate
     private Timestamp created_at;
     @LastModifiedDate
     private Timestamp updated_at;
+
+
+    public static Map Type;
+    static{
+        Type = new HashMap();
+        Type.put(1,"账号管理");
+    }
+
 
     public Long getId() {
         return id;
@@ -33,6 +44,14 @@ public class Authority {
 
     public String getName() {
         return name;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public void setName(String name) {

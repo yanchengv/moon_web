@@ -1,7 +1,8 @@
-package com.balawo.services;
+package com.balawo.services.manages;
 
 import com.balawo.models.Role;
-import com.balawo.repository.RoleRepository;
+import com.balawo.repository.manages.RoleAuthorityRepository;
+import com.balawo.repository.manages.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,11 +10,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private RoleAuthorityRepository roleAuthorityRepository;
 
     public Page<Role> findAll(Integer page){
         page -= 1;
@@ -24,5 +30,10 @@ public class RoleService {
 
     public void createRole(Role role){
         roleRepository.save(role);
+    }
+
+    public List<Long> findAllAuthIds(Long roleId){
+       var authIds =  roleAuthorityRepository.findAllAuthIdByRoleId(roleId);
+       return authIds;
     }
 }

@@ -28,7 +28,11 @@
               </tr>
               <tr>
                   <td colspan="60" style="border:none" class="text-right">
-                      <button type="button" class="btn btn-info btn-sm"
+                      <a type="button" class="btn btn-default btn-sm"
+                              th:href="@{/authorites/index(roleId=${role.getId()})}">
+                          权限
+                      </a>
+                      <button type="button" class="btn btn-default btn-sm"
                               th:onclick="">
                           修改
                       </button>

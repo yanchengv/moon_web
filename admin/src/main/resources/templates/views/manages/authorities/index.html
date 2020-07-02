@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layouts/layout}">
+<head>
+    <title>权限列表</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/roleAuthorities/create}" method="post">
+        <input type="hidden" name="roleId" th:value="${roleId}">
+    <div class="checkbox" th:each="item,authMap:${authorities}">
+        <p class="text-left"><label>【<strong th:text="${T(com.balawo.models.Authority).Type.get(authMap.current.key)}"> </strong>】</label></p>
+        <label class="backstage_left" style="margin-left: 20px;padding: 10px 0" th:each="auth: ${authMap.current.value}">
+            <input type="checkbox"  name="authority_ids" th:value="${auth.getId()}" th:checked="${AuthIdsOfRole.contains(auth.getId())}"><span th:text="${auth.getName()}"></span>
+        </label>
+
+
+    </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

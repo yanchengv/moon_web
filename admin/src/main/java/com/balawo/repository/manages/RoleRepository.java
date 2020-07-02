@@ -1,4 +1,4 @@
-package com.balawo.repository;
+package com.balawo.repository.manages;
 
 import com.balawo.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
