@@ -1,0 +1,9 @@
+[
+  {
+    "parent": "账户管理",
+    "children": [
+      {"name": "管理员", "url": "/crms/home_pages", "action": "crms/home_pages#index"}
+    ]
+  }
+
+]
