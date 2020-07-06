@@ -1,9 +1,45 @@
 [
   {
+    "parent": "主页",
+    "url": "/crms",
+    "children": []
+  },
+  {
     "parent": "账户管理",
+    "url": "#",
     "children": [
-      {"name": "管理员", "url": "/crms/home_pages", "action": "crms/home_pages#index"}
+      {
+        "name": "管理员",
+        "url": "/crms/admins/index"
+      },
+      {
+        "name": "用户列表",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "parent": "公司管理",
+    "url": "#",
+    "children": [
+      {
+        "name": "公司列表",
+        "url": "/crms/home_pages"
+      },
+      {
+        "name": "部门列表",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "parent": "系统管理",
+    "url": "#",
+    "children": [
+      {
+        "name": "角色管理",
+        "url": "/crms/roles/index"
+      }
     ]
   }
-
 ]
