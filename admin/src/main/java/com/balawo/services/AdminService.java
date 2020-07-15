@@ -1,7 +1,10 @@
 package com.balawo.services;
 
+import com.alibaba.fastjson.JSONObject;
 import com.balawo.models.Admin;
+import com.balawo.models.Authority;
 import com.balawo.repository.AdminRepository;
+import com.sun.xml.bind.v2.runtime.reflect.Lister;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,8 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 
 @Service
@@ -51,6 +53,34 @@ public class AdminService {
         var a = adminRepository.save(admin);
     }
 
+    //查询管理员拥有的所有权限的url
+    public List findAdminAuthUrl(Long adminId){
+      var allAuths = adminRepository.findAllAuthorities(adminId);
+        List<String> list = new ArrayList<String>();
+        for (Object[] auth:allAuths) {
+            list.add(String.valueOf(auth[2]));
+        }
+      return  list;
+    }
+
+    //比较管理员是否拥有权限子菜单
+    public  static Boolean compareMyUrlAndSonUrl(List myAuths,List sonAuths){
+        var flag = false;
+        for (var auth:sonAuths) {
+            HashMap<String,String> authMap = JSONObject.parseObject(auth.toString(),HashMap.class);
+            var url = authMap.get("url");
+            //校验管理员拥有的权限是否包含父菜单下面的子连接,如果包含则显示父菜单名称
+            if (myAuths.contains(url)){
+                flag = true;
+                break;
+            };
+        };
+        return flag;
+    }
+
+
+
+
     /**
      * 密码验证是否正确
      * DigestUtils.sha1Hex 等同于ruby的Digest::SHA1.hexdigest方法
@@ -81,4 +111,5 @@ public class AdminService {
         var salt = UUID.randomUUID().toString().replace("-", "");
         return salt;
     }
+
 }

@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       layout:decorate="~{layouts/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout}">
 <head>
     <title>管理员列表</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>后台管理系统</h1>
+    <h3>登录用户：</h3>
+    <h5 th:text="${currentUser.getName()}"></h5>
+    <h3>当前用户的权限：</h3>
+    <span th:text="${myAuths}"></span>
+    <h3>全部菜单列表</h3>
+    <span th:text="${sideMenus}"></span>
 </div>
 </body>
 </html>

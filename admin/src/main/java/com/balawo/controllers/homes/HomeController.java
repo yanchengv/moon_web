@@ -12,6 +12,7 @@ public class HomeController {
     //管理系统主页
     @GetMapping("/")
     public String index(Model model){
+        System.out.println("indexindexindexindex");
         var breadMenu = new HashMap<String,String>();
         breadMenu.put("m1","管理系统");
         breadMenu.put("m2","首页");

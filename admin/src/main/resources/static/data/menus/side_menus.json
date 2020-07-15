@@ -1,7 +1,7 @@
 [
   {
     "parent": "主页",
-    "url": "/crms",
+    "url": "/crms/",
     "children": []
   },
   {

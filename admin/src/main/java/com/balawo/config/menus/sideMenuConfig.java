@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import javax.annotation.Resource;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +22,6 @@ public class sideMenuConfig {
             String path = sideMenuConfig.class.getClassLoader().getResource("static/data/menus/side_menus.json").getPath();
             String s = readJsonFile(path);
             JSONArray allMenus = JSONObject.parseArray(s.replace(" ",""));
-            System.out.println(allMenus);
             //((JSONObject) list.get(0)).get("parent")
             Map<String, Object> sideMenus = new HashMap();
             sideMenus.put("sideMenus", allMenus);

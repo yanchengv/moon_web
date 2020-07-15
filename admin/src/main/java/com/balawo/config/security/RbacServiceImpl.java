@@ -37,6 +37,7 @@ public class RbacServiceImpl implements RbacService {
             urls.add("/crms/roles/index");
             urls.add("/crms/roles/new");
             urls.add("/crms/roles/create");
+            urls.add("/crms/authorites/index");
 
             System.out.println("查看用户用户使用拥有当前访问界面的权限");
             var requestURI = request.getRequestURI();

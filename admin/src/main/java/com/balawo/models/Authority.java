@@ -31,6 +31,8 @@ public class Authority {
     static{
         Type = new HashMap();
         Type.put(1,"账号管理");
+        Type.put(2,"系统管理");
+        Type.put(3,"主页");
     }
 
 
