@@ -33,6 +33,7 @@ public class Authority {
         Type.put(1,"账号管理");
         Type.put(2,"系统管理");
         Type.put(3,"主页");
+        Type.put(4,"外卖管理");
     }
 
 

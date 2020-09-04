@@ -19,6 +19,21 @@
     ]
   },
   {
+    "parent": "外卖管理",
+    "url": "#",
+    "children": [
+      {
+        "name": "餐厅标签",
+        "url": "/crms/takeouts/restaurants/index"
+      },
+      {
+        "name": "餐厅管理",
+        "url": "/crms/takeouts/"
+      }
+
+    ]
+  },
+  {
     "parent": "公司管理",
     "url": "#",
     "children": [

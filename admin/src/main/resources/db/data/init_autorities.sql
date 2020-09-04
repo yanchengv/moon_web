@@ -10,6 +10,8 @@
             urls.add("/crms/authorites/index");
  */
 
+-- 主页
+insert into authorities (id,name,action,type,updated_at,created_at) values(50001,'主页','/crms/',3,'2020-7-15','2020-7-15');
 
 -- 账户管理
 -- insert into authorities (id,name,action,type,updated_at,created_at) values(51000,'账户管理','/crms/',1,'2020-6-23','2020-6-23');
@@ -24,7 +26,5 @@ insert into authorities (id,name,action,type,updated_at,created_at) values(51006
 insert into authorities (id,name,action,type,updated_at,created_at) values(52000,'系统管理','/crms/roles/index',2,'2020-7-15','2020-7-15');
 
 
--- 主页
-insert into authorities (id,name,action,type,updated_at,created_at) values(50001,'主页','/crms/',3,'2020-7-15','2020-7-15');
-
-
+-- 外卖管理
+insert into takeout_restaurants (id,name,action,type,updated_at,created_at) values(53001,'外卖管理','/crms/takeouts/restaurants/index',4,'2020-09-03','2020-09-03');
