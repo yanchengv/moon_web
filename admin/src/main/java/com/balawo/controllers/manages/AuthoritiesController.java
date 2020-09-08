@@ -23,7 +23,7 @@ public class AuthoritiesController {
     private RoleService roleService;
 
     @GetMapping("/index")
-    public String index(@RequestParam(value = "1",defaultValue = "1") Integer page,String roleId, Model model){
+    public String index(@RequestParam(value = "1", defaultValue = "1") Integer page, String roleId, Model model) {
         var breadMenu = new HashMap<String, String>();
         breadMenu.put("m1", "系统管理");
         breadMenu.put("m2", "角色管理");
@@ -32,10 +32,10 @@ public class AuthoritiesController {
         var authMap = authorityService.getAllAuthoritiesGroupByType();
         var AuthIdsOfRole = roleService.findAllAuthIds(Long.parseLong(roleId));
         System.out.println(AuthIdsOfRole);
-        model.addAttribute("authorities",authMap);
-        model.addAttribute("roleId",roleId);
-        model.addAttribute("AuthIdsOfRole",AuthIdsOfRole);
-        model.addAttribute("breadMenu",breadMenu);
+        model.addAttribute("authorities", authMap);
+        model.addAttribute("roleId", roleId);
+        model.addAttribute("AuthIdsOfRole", AuthIdsOfRole);
+        model.addAttribute("breadMenu", breadMenu);
         return "/views/manages/authorities/index";
     }
 }

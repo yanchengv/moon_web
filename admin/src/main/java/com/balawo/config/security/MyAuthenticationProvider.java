@@ -11,7 +11,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 
-
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
     /**
@@ -21,15 +20,13 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     private MyAdminDetailsService userDetailService;
 
 
-
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String userName = authentication.getName();// 这个获取表单输入中返回的用户名;
         String password = (String) authentication.getCredentials();// 这个是表单中输入的密码；
         // 这里构建来判断用户是否存在和密码是否正确
         AdminInfo adminInfo = (AdminInfo) userDetailService.loadUserByUsername(userName); // 这里调用我们的自己写的获取用户的方法；
-        if (adminInfo == null){
+        if (adminInfo == null) {
             throw new BadCredentialsException("用户名不存在");
         }
 
@@ -38,7 +35,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("密码不正确");
         }
         // Credentials: [PROTECTED]; Authenticated: true; Details: null; Granted Authorities: ROLE_admin
-        Authentication auth = new UsernamePasswordAuthenticationToken(adminInfo,adminInfo.getPassword(),adminInfo.getAuthorities());
+        Authentication auth = new UsernamePasswordAuthenticationToken(adminInfo, adminInfo.getPassword(), adminInfo.getAuthorities());
         return auth;
 
     }

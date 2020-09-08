@@ -13,14 +13,14 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         var it = userRepository.findAll();
         var users = new ArrayList<User>();
         it.forEach(e -> users.add(e));
         return users;
     }
 
-    public List<User> findAllByName(String name){
+    public List<User> findAllByName(String name) {
         var it = userRepository.findByNameLike(name);
         var users = new ArrayList<User>();
         it.forEach(e -> users.add(e));

@@ -11,14 +11,14 @@ public class HomeController {
 
     //管理系统主页
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         System.out.println("indexindexindexindex");
-        var breadMenu = new HashMap<String,String>();
-        breadMenu.put("m1","管理系统");
-        breadMenu.put("m2","首页");
-        breadMenu.put("m2_url","/crms");
-        breadMenu.put("m3","首页");
-        model.addAttribute("breadMenu",breadMenu);
+        var breadMenu = new HashMap<String, String>();
+        breadMenu.put("m1", "管理系统");
+        breadMenu.put("m2", "首页");
+        breadMenu.put("m2_url", "/crms");
+        breadMenu.put("m3", "首页");
+        model.addAttribute("breadMenu", breadMenu);
         return "views/homes/home/index";
     }
 }

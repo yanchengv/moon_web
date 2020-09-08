@@ -33,7 +33,7 @@ import java.util.Map;
 @Entity
 //自动生成时间
 @EntityListeners(AuditingEntityListener.class)
-@Table(name="admins")
+@Table(name = "admins")
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,10 +57,11 @@ public class Admin {
     private Timestamp updated_at;
 
     public static Map Status;
-    static{
+
+    static {
         Status = new HashMap();
-        Status.put(0,"正常");
-        Status.put(1,"禁用");
+        Status.put(0, "正常");
+        Status.put(1, "禁用");
     }
 
 

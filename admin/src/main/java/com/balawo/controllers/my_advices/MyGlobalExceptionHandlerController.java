@@ -25,11 +25,11 @@ public class MyGlobalExceptionHandlerController {
 
     //html页面全局获取当前用户的数据绑定
     @ModelAttribute
-    public void currentUser(Model model,Authentication authentication){
+    public void currentUser(Model model, Authentication authentication) {
         System.out.println("currentUser*********");
-        if(authentication != null){
-            AdminInfo currentUser = (AdminInfo)authentication.getPrincipal();
-            if(currentUser != null){
+        if (authentication != null) {
+            AdminInfo currentUser = (AdminInfo) authentication.getPrincipal();
+            if (currentUser != null) {
                 model.addAttribute("currentUser", currentUser);
             }
         }
@@ -39,10 +39,10 @@ public class MyGlobalExceptionHandlerController {
     @ModelAttribute
     public void myAuthorities(Model model, Authentication authentication) {
         System.out.println("myAuthorities**********");
-        if(authentication != null){
-            AdminInfo currentUser = (AdminInfo)authentication.getPrincipal();
-            if(currentUser != null){
-               var  authUrls = adminService.findAdminAuthUrl(1L);
+        if (authentication != null) {
+            AdminInfo currentUser = (AdminInfo) authentication.getPrincipal();
+            if (currentUser != null) {
+                var authUrls = adminService.findAdminAuthUrl(1L);
                 model.addAttribute("myAuths", authUrls);
             }
         }

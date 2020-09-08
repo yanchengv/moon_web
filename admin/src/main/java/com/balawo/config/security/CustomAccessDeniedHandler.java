@@ -24,7 +24,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 //                        .put("status", 401)
 //                        .put("msg", "无访问权限")
 //                        .toString());
-       // System.out.println("Referer: " + request.getHeader("Referer"));
+        // System.out.println("Referer: " + request.getHeader("Referer"));
         response.sendRedirect(request.getHeader("Referer"));
     }
 }

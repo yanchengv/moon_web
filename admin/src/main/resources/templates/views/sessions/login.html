@@ -11,7 +11,7 @@
             <div class="card-group">
                 <div class="card p-4">
                     <div class="card-body">
-                        <form th:action="@{/crms/admin_login}"  method="post">
+                        <form th:action="@{/crms/admin_login}" method="post">
                             <h1>登录</h1>
                             <p class="text-muted">不怨天，不尤人。</p>
                             <div class="input-group mb-3">
@@ -25,7 +25,7 @@
                                     </svg>
 
                                 </span></div>
-                                <input class="form-control" type="text" name="username" placeholder="username"  >
+                                <input class="form-control" type="text" name="username" placeholder="username">
                             </div>
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
@@ -42,7 +42,7 @@
                                 <input class="form-control" type="password" name="password" placeholder="Password">
                             </div>
                             <div th:if="${login_error != null}">
-                                <p style="color: red" th:text="${login_error}" />
+                                <p style="color: red" th:text="${login_error}"/>
                             </div>
 
                             <div class="row">

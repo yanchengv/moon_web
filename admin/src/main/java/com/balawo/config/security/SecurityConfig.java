@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
-
 @Configurable
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) //配置后会拦截注解了@PreAuthrize注解的方法  @PreAuthorize("hasAnyRole('admin')")
@@ -21,15 +20,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private MyAuthenticationProvider myAuthenticationProvider;
 
 
-
     /**
      * 自定义获取用户信息接口
+     *
      * @param
      * @throws Exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-          auth.authenticationProvider(myAuthenticationProvider);
+        auth.authenticationProvider(myAuthenticationProvider);
 //        auth.inMemoryAuthentication()
 //                .passwordEncoder(new BCryptPasswordEncoder())
 //                .withUser("admin")
@@ -41,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable(); //解决 in a frame because it set 'X-Frame-Options' to 'DENY' 问题
         http.authorizeRequests()
-                .antMatchers( "/coreui/**", "/webjars/**","/bootstrap/**","/login","/register","/crms/admin_login")//不拦截登录相关方法
+                .antMatchers("/coreui/**", "/webjars/**", "/bootstrap/**", "/login", "/register", "/crms/admin_login")//不拦截登录相关方法
                 .permitAll()
                 //.antMatchers("/user/**").hasAnyRole("USER") // 需要具有ROLE_USER角色才能访问
                 //.antMatchers("/admins/**").hasAnyRole("ADMIN") // 需要具有ROLE_ADMIN角色才能访问
@@ -58,17 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/admins/index") //成功登陆后跳转页面
                 .failureUrl("/login?error=error")
                 .permitAll() //permitAll()表示这个不需要验证 登录页面，登录失败页面
-                .and().csrf().disable(); 					// 关闭csrf防护
+                .and().csrf().disable();                    // 关闭csrf防护
         ;
     }
-
-
-
-
-
-
-
-
 
 
 }

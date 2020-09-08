@@ -30,13 +30,13 @@ public class RolesController {
         breadMenu.put("m3", "角色列表");
 
         var roles = roleService.findAll(page);
-        model.addAttribute("roles",roles);
+        model.addAttribute("roles", roles);
         model.addAttribute("breadMenu", breadMenu);
         return "views/manages/roles/index";
     }
 
     @GetMapping("/new")
-    public String newOne(Model model){
+    public String newOne(Model model) {
         var breadMenu = new HashMap<String, String>();
         breadMenu.put("m1", "系统管理");
         breadMenu.put("m2", "角色管理");
@@ -47,7 +47,7 @@ public class RolesController {
     }
 
     @PostMapping("/create")
-    public String create(HttpServletRequest request, RedirectAttributes redirectAttributes){
+    public String create(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         var role = new Role();
         role.setName(request.getParameter("name"));
         role.setBrief(request.getParameter("brief"));

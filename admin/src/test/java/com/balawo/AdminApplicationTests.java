@@ -23,7 +23,6 @@ class AdminApplicationTests {
     private UserRepository userRepository;
 
 
-
     @Test
     void contextLoads() {
     }
@@ -32,7 +31,7 @@ class AdminApplicationTests {
     public void test() {
 //       var user = userRepository.findById(1);
 //        System.out.println(user);
-       var users =  userRepository.findAll();
+        var users = userRepository.findAll();
         for (User user : users) {
             System.out.println(user);
         }
@@ -40,7 +39,7 @@ class AdminApplicationTests {
 
     //测试sha1密码加密，等同于ruby的密码加密Digest::SHA1.hexdigest()方法
     @Test
-    public void sha1(){
+    public void sha1() {
         System.out.println(11212312);
         System.out.println(DigestUtils.sha1Hex("123"));
     }

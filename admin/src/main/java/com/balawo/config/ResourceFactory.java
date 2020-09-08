@@ -13,7 +13,7 @@ import java.util.Properties;
 /**
  * 项目开发中经常需要加载外部资源文件，@PropertySource给我们提供了极大的便利。
  * 但是@PropertySource目前不支持 yml 文件的解析，由于 yml 结构清晰等优点，使用频率也会越来越高。
- *  对于@PropertySource注解，默认是不支持yml配置文件读取的，需要修改重写才可以
+ * 对于@PropertySource注解，默认是不支持yml配置文件读取的，需要修改重写才可以
  */
 public class ResourceFactory extends DefaultPropertySourceFactory {
     @Override

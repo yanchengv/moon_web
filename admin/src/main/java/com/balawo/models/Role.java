@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Entity
 //自动生成时间
 @EntityListeners(AuditingEntityListener.class)
-@Table(name="roles")
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -25,7 +25,6 @@ public class AdminService {
     private AdminRepository adminRepository;
 
 
-
     public Page<Admin> findAll(Integer page) {
         page -= 1;
         Pageable pageable = PageRequest.of(page, 10, Sort.by("id").ascending());
@@ -54,31 +53,31 @@ public class AdminService {
     }
 
     //查询管理员拥有的所有权限的url
-    public List findAdminAuthUrl(Long adminId){
-      var allAuths = adminRepository.findAllAuthorities(adminId);
+    public List findAdminAuthUrl(Long adminId) {
+        var allAuths = adminRepository.findAllAuthorities(adminId);
         List<String> list = new ArrayList<String>();
-        for (Object[] auth:allAuths) {
+        for (Object[] auth : allAuths) {
             list.add(String.valueOf(auth[2]));
         }
-      return  list;
+        return list;
     }
 
     //比较管理员是否拥有权限子菜单
-    public  static Boolean compareMyUrlAndSonUrl(List myAuths,List sonAuths){
+    public static Boolean compareMyUrlAndSonUrl(List myAuths, List sonAuths) {
         var flag = false;
-        for (var auth:sonAuths) {
-            HashMap<String,String> authMap = JSONObject.parseObject(auth.toString(),HashMap.class);
+        for (var auth : sonAuths) {
+            HashMap<String, String> authMap = JSONObject.parseObject(auth.toString(), HashMap.class);
             var url = authMap.get("url");
             //校验管理员拥有的权限是否包含父菜单下面的子连接,如果包含则显示父菜单名称
-            if (myAuths.contains(url)){
+            if (myAuths.contains(url)) {
                 flag = true;
                 break;
-            };
-        };
+            }
+            ;
+        }
+        ;
         return flag;
     }
-
-
 
 
     /**

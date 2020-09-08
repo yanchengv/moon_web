@@ -10,14 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-public interface AdminRoleRepository extends JpaRepository<AdminRole,Long> {
+public interface AdminRoleRepository extends JpaRepository<AdminRole, Long> {
 
     //根据管理员ID查询所有的角色ID
-    @Query(value = "select role_id from admin_roles where admin_id = ?1",nativeQuery = true)
+    @Query(value = "select role_id from admin_roles where admin_id = ?1", nativeQuery = true)
     List<Long> findAllRoleIdsByAdminId(Long adminId);
 
     @Modifying
     @Transactional
-    @Query(value = "delete from admin_roles where admin_id = ?1 and role_id=?2 ",nativeQuery = true)
-    void deleteAdminRoleByRoleIdAndAdminId(Long adminId,Long roleId);
+    @Query(value = "delete from admin_roles where admin_id = ?1 and role_id=?2 ", nativeQuery = true)
+    void deleteAdminRoleByRoleIdAndAdminId(Long adminId, Long roleId);
 }

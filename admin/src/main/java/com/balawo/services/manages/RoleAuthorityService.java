@@ -14,18 +14,18 @@ public class RoleAuthorityService {
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
 
-    public void create(RoleAuthority roleAuthority){
+    public void create(RoleAuthority roleAuthority) {
         roleAuthorityRepository.save(roleAuthority);
     }
 
-    public List<RoleAuthority> findByAuthIdAndRoleId(Long authorityId,Long roleId){
-        var roleAuthList = roleAuthorityRepository.findByAuthIdAndRoleId(authorityId,roleId);
+    public List<RoleAuthority> findByAuthIdAndRoleId(Long authorityId, Long roleId) {
+        var roleAuthList = roleAuthorityRepository.findByAuthIdAndRoleId(authorityId, roleId);
         return roleAuthList;
     }
 
     // 删除角色权限记录
-    public void delete(Long authorityId,Long roleId){
-       roleAuthorityRepository.deleteByAuthorityIdAndRoleId(authorityId,roleId);
+    public void delete(Long authorityId, Long roleId) {
+        roleAuthorityRepository.deleteByAuthorityIdAndRoleId(authorityId, roleId);
 
     }
 

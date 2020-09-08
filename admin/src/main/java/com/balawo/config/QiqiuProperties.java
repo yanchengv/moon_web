@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.validation.annotation.Validated;
 
 @Configuration
-@PropertySource(value = "classpath:qiniu.yml",factory = ResourceFactory.class)
+@PropertySource(value = "classpath:qiniu.yml", factory = ResourceFactory.class)
 @ConfigurationProperties(prefix = "app")
 @Validated
 public class QiqiuProperties {

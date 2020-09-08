@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       layout:decorate="~{layouts/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
     <title>管理员角色列表</title>
 </head>
@@ -9,9 +9,10 @@
 <div layout:fragment="content">
     <form th:action="@{/adminRoles/create}" method="post">
         <input type="hidden" name="adminId" th:value="${adminId}">
-        <div class="form-check form-check-inline" th:each="role:${allRoles}" >
-            <input class="form-check-input" type="checkbox" name="roleIds" th:checked="${adminRoles.contains(role.getId())}" th:value="${role.getId()}">
-            <label class="form-check-label"  th:text="${role.getName()}"></label>
+        <div class="form-check form-check-inline" th:each="role:${allRoles}">
+            <input class="form-check-input" type="checkbox" name="roleIds"
+                   th:checked="${adminRoles.contains(role.getId())}" th:value="${role.getId()}">
+            <label class="form-check-label" th:text="${role.getName()}"></label>
         </div>
 
 

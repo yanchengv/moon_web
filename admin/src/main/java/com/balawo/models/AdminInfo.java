@@ -24,7 +24,6 @@ public class AdminInfo implements UserDetails {
     private Timestamp deleted_at;
 
 
-
 //    @Override
 //    public String getPassword() {
 //        return password;
@@ -91,6 +90,7 @@ public class AdminInfo implements UserDetails {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }

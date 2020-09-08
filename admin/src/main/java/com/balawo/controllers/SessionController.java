@@ -28,7 +28,7 @@ public class SessionController {
      * @return
      */
     @RequestMapping("/login")
-    public String loginIndex(@RequestParam(name = "error",required = false) String error, Model model) {
+    public String loginIndex(@RequestParam(name = "error", required = false) String error, Model model) {
         if (error != null) {
             model.addAttribute("login_error", "用户名或者密码不正确！");
         }

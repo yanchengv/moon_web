@@ -29,7 +29,7 @@ public class AdminRoleController {
     private AdminRoleService adminRoleService;
 
     @GetMapping("/index")
-    public String index(Long adminId,Model model) {
+    public String index(Long adminId, Model model) {
 
         var breadMenu = new HashMap<String, String>();
         breadMenu.put("m1", "主页");
@@ -38,33 +38,33 @@ public class AdminRoleController {
         breadMenu.put("m3", "用户权限列表");
         List<Role> allRoles = roleService.findAll();
         var adminRoles = adminRoleService.findAllRoleIdsByAdminId(adminId);
-        model.addAttribute("allRoles",allRoles);
-        model.addAttribute("adminId",adminId);
-        model.addAttribute("adminRoles",adminRoles);
-        model.addAttribute("breadMenu",breadMenu);
+        model.addAttribute("allRoles", allRoles);
+        model.addAttribute("adminId", adminId);
+        model.addAttribute("adminRoles", adminRoles);
+        model.addAttribute("breadMenu", breadMenu);
         return "/views/manages/admin_roles/index";
     }
 
     @PostMapping("/create")
-    public String create(Long adminId,Long[]roleIds,RedirectAttributes redirectAttributes){
+    public String create(Long adminId, Long[] roleIds, RedirectAttributes redirectAttributes) {
         var newRoleIds = Arrays.asList(roleIds);
         var oldRoleIds = adminRoleService.findAllRoleIdsByAdminId(adminId);
 
-        var deleteRoleIds = oldRoleIds.stream().filter(item-> !newRoleIds.contains(item)).collect(toList());
+        var deleteRoleIds = oldRoleIds.stream().filter(item -> !newRoleIds.contains(item)).collect(toList());
         var addRoleIds = newRoleIds.stream().filter(item -> !oldRoleIds.contains(item)).collect(toList());
 
         //保存新增角色
-        for (Long roleId: addRoleIds) {
+        for (Long roleId : addRoleIds) {
             AdminRole adminRole = new AdminRole();
             adminRole.setAdmin_id(adminId);
             adminRole.setRole_id(roleId);
             adminRoleService.create(adminRole);
         }
         //删除旧的角色
-        for (Long roleId: deleteRoleIds) {
-            adminRoleService.delete(adminId,roleId);
+        for (Long roleId : deleteRoleIds) {
+            adminRoleService.delete(adminId, roleId);
         }
         redirectAttributes.addFlashAttribute("flashMsg", "保存成功");
-        return "redirect:/adminRoles/index?adminId="+adminId;
+        return "redirect:/adminRoles/index?adminId=" + adminId;
     }
 }

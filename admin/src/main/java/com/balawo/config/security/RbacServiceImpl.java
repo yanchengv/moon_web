@@ -21,6 +21,7 @@ public class RbacServiceImpl implements RbacService {
     private AuthorityService authorityService;
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
+
     @Override
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
@@ -44,7 +45,7 @@ public class RbacServiceImpl implements RbacService {
             System.out.println(requestURI);
 
             //如果系统所有权限不包含当前访问的uri,则不需要校验，直接可以访问
-            if (!allAuthorities.contains(requestURI)){
+            if (!allAuthorities.contains(requestURI)) {
                 return true;
             }
             // 注意这里不能用equal来判断，因为有些URL是有参数的，所以要用AntPathMatcher来比较

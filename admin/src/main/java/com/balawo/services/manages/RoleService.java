@@ -22,26 +22,25 @@ public class RoleService {
     @Autowired
     private RoleAuthorityRepository roleAuthorityRepository;
 
-    public List<Role> findAll(){
-        List<Role> roles =  roleRepository.findAll();
+    public List<Role> findAll() {
+        List<Role> roles = roleRepository.findAll();
         return roles;
     }
 
-    public Page<Role> findAll(Integer page){
+    public Page<Role> findAll(Integer page) {
         page -= 1;
         Pageable pageable = PageRequest.of(page, 10, Sort.by("id").ascending());
-        Page<Role> roles =   roleRepository.findAll(pageable);
+        Page<Role> roles = roleRepository.findAll(pageable);
         return roles;
     }
 
 
-
-    public void createRole(Role role){
+    public void createRole(Role role) {
         roleRepository.save(role);
     }
 
-    public List<Long> findAllAuthIds(Long roleId){
-       var authIds =  roleAuthorityRepository.findAllAuthIdByRoleId(roleId);
-       return authIds;
+    public List<Long> findAllAuthIds(Long roleId) {
+        var authIds = roleAuthorityRepository.findAllAuthIdByRoleId(roleId);
+        return authIds;
     }
 }

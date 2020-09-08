@@ -27,9 +27,9 @@ public class AdminsController {
     private AdminService adminService;
 
     @GetMapping("/index")
-    public String index(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model,Authentication authentication) {
+    public String index(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model, Authentication authentication) {
         //Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        AdminInfo current_user = (AdminInfo)authentication.getPrincipal();
+        AdminInfo current_user = (AdminInfo) authentication.getPrincipal();
         var breadMenu = new HashMap<String, String>();
         breadMenu.put("m1", "主页");
         breadMenu.put("m2", "管理员");
@@ -40,7 +40,7 @@ public class AdminsController {
         model.addAttribute("current_page", page);
         model.addAttribute("adminStatus", Admin.Status);
         model.addAttribute("breadMenu", breadMenu);
-        System.out.println("ID: "+current_user.getId() +"；Name:" + current_user.getName() + "；Phone:" + current_user.getPhone()+"；权限：" + current_user.getAuthorities());
+        System.out.println("ID: " + current_user.getId() + "；Name:" + current_user.getName() + "；Phone:" + current_user.getPhone() + "；权限：" + current_user.getAuthorities());
         return "views/homes/admins/index";
     }
 

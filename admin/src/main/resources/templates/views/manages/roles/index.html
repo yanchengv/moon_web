@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       layout:decorate="~{layouts/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
     <title>角色列表</title>
 </head>
 <body>
 <div layout:fragment="content">
     <a class="btn btn-primary btn-sm" th:href="@{/roles/new}">新增</a>
-      <table class="table table-hover">
-          <thead>
-          <tr>
-              <th scope="col">ID</th>
-              <th scope="col">角色名称</th>
-              <th scope="col">角色描述</th>
-              <th scope="col">创建时间</th>
-          </tr>
-          </thead>
-          <tbody>
-          <div th:each="role : ${roles}">
-              <tr>
-                  <td th:text="${role.getId()}"></td>
-                  <td th:text="${role.getName()}"></td>
-                  <td th:text="${role.getBrief()}"></td>
-                  <td th:text="${role.getCreated_at()}"></td>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">角色名称</th>
+            <th scope="col">角色描述</th>
+            <th scope="col">创建时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div th:each="role : ${roles}">
+            <tr>
+                <td th:text="${role.getId()}"></td>
+                <td th:text="${role.getName()}"></td>
+                <td th:text="${role.getBrief()}"></td>
+                <td th:text="${role.getCreated_at()}"></td>
 
-              </tr>
-              <tr>
-                  <td colspan="60" style="border:none" class="text-right">
-                      <a type="button" class="btn btn-default btn-sm"
-                              th:href="@{/authorites/index(roleId=${role.getId()})}">
-                          权限
-                      </a>
-                      <button type="button" class="btn btn-default btn-sm"
-                              th:onclick="">
-                          修改
-                      </button>
+            </tr>
+            <tr>
+                <td colspan="60" style="border:none" class="text-right">
+                    <a type="button" class="btn btn-default btn-sm"
+                       th:href="@{/authorites/index(roleId=${role.getId()})}">
+                        权限
+                    </a>
+                    <button type="button" class="btn btn-default btn-sm"
+                            th:onclick="">
+                        修改
+                    </button>
 
-                  </td>
+                </td>
 
-              </tr>
-          </div>
+            </tr>
+        </div>
 
-          </tbody>
-      </table>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
